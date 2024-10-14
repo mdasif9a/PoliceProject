@@ -1,0 +1,38 @@
+CREATE TABLE Menus (
+    MenuId INT PRIMARY KEY IDENTITY(1,1),
+    MenuName_En VARCHAR(100) NOT NULL, -- English Menu Name
+    MenuName_Hi NVARCHAR(100) NOT NULL, -- Hindi Menu Name
+    MenuURL VARCHAR(255),
+    MenuOrder INT, -- Menu order for sorting
+    IsActive BIT DEFAULT 1, -- Is active or not
+    CreatedDate DATETIME DEFAULT GETDATE(), -- Creation date
+    CreatedBy VARCHAR(50), -- Created by user
+    UpdatedDate DATETIME NULL, -- Last updated date
+    UpdatedBy VARCHAR(50) NULL -- Last updated by user
+);
+
+CREATE TABLE SubMenus (
+    SubMenuId INT PRIMARY KEY IDENTITY(1,1),
+    MenuId INT, -- MenuId reference
+    SubMenuName_En VARCHAR(100) NOT NULL, -- English Submenu Name
+    SubMenuName_Hi NVARCHAR(100) NOT NULL, -- Hindi Submenu Name
+    SubMenuURL VARCHAR(255),
+    SubMenuOrder INT, -- Submenu order for sorting
+    IsActive BIT DEFAULT 1, -- Is active or not
+    CreatedDate DATETIME DEFAULT GETDATE(), -- Creation date
+    CreatedBy VARCHAR(50), -- Created by user
+    UpdatedDate DATETIME NULL, -- Last updated date
+    UpdatedBy VARCHAR(50) NULL -- Last updated by user
+);
+
+CREATE TABLE RoleMenuAccess (
+    RoleMenuAccessId INT PRIMARY KEY IDENTITY(1,1),
+    RoleId INT, -- Role reference
+    MenuId INT, -- Menu reference
+    SubMenuId INT NULL, -- Optional, for submenu access
+    IsActive BIT DEFAULT 1, -- Access active/inactive
+    CreatedDate DATETIME DEFAULT GETDATE(), -- Creation date
+    CreatedBy VARCHAR(50), -- Created by user
+    UpdatedDate DATETIME NULL, -- Last updated date
+    UpdatedBy VARCHAR(50) NULL -- Last updated by user
+);

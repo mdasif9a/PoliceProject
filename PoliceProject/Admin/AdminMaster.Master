@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="PoliceProject.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="/Images/faviconlogo.jpg" rel="icon" />
+    <link href="/Images/faviconlogo.jpg" rel="apple-touch-icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/AdminLayout/css/adminlte.min.css">
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body class="sidebar-mini layout-navbar-fixed layout-fixed">
+    <form id="form1" runat="server">
+
+
+        <div class="wrapper">
+
+            <nav class="main-header navbar navbar-expand navbar-dark navbar-cyan">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="javascript:void(0)" role="button">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="/Admin/Default.aspx" class="nav-link">Home</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="fullscreen" href="javascript:void(0)" role="button">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="user-panel d-flex">
+                            <div class="info">
+                                <span class="d-block text-white">Admin Panel</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <aside class="main-sidebar sidebar-light-cyan elevation-4">
+                <a href="/" class="brand-link bg-cyan">
+                    <span class="text-white ml-3 font-weight-bold">Admin Panel</span>
+                </a>
+                <div class="sidebar text-sm">
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <asp:Literal ID="MenuM" runat="server"></asp:Literal>
+
+                            <li class="nav-item">
+                                <a href="/Home/Settings" class="nav-link">
+                                    <i class="fas fa-lock"></i>
+                                    <p class="ml-3">
+                                        Change Password
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/Home/LogOut" class="nav-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <p class="ml-3">
+                                        Logout
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <div class="content-wrapper">
+
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+
+            </div>
+
+            <footer class="main-footer">
+                <div class="float-right d-none d-sm-inline">
+                    Admin Panel
+                </div>
+                <strong>Copyright &copy; <%= DateTime.UtcNow.AddHours(5).AddMinutes(30).Year %> </strong>All rights reserved.
+            </footer>
+
+        </div>
+
+        <script src="/Scripts/jquery-3.6.3.min.js"></script>
+        <script src="/AdminLayout/js/bootstrap.bundle.min.js"></script>
+        <script src="/AdminLayout/js/adminlte.min.js"></script>
+
+        <script type="text/javascript">
+
+            $(function () {
+                var links = $("a.nav-link").filter(function () {
+                    return this.href == location.href;
+                });
+                links.addClass("active").closest("ul.nav-treeview").parent().addClass("menu-open").children("a.nav-link").addClass("active");
+            });
+
+            function Show(event, imageid) {
+                $(imageid).attr('src', URL.createObjectURL(event.target.files[0]));
+            }
+
+        </script>
+        <asp:ContentPlaceHolder ID="Scripts" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+
+</html>
